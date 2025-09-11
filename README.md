@@ -222,6 +222,8 @@ CREATE TABLE ai_analysis_log (
 - **コミットメッセージ規約**: Conventional Commits
 - **コミットリント**: commitlint + husky
 - **プリコミットフック**: husky
+- **コードフォーマッター・リンター**: Biome
+- **プリコミット品質チェック**: lint-staged
 
 ### セットアップ
 ```bash
