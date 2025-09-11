@@ -234,6 +234,13 @@ pnpm install
 pnpm prepare
 ```
 
+### CI/CD
+今後、以下のCI/CDパイプラインを構築予定：
+- **Worker Build連携**: Cloudflare Workers Buildとの統合
+- **自動デプロイ**: プルリクエストマージ時の自動デプロイ
+- **環境分離**: 開発・ステージング・本番環境の分離
+- **品質チェック**: Biome、テスト、型チェックの自動実行
+
 ### コミットメッセージ規約
 本プロジェクトでは[Conventional Commits](https://www.conventionalcommits.org/)に準拠したコミットメッセージを使用しています。
 
