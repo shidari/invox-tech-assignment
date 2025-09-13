@@ -1,33 +1,29 @@
-name: CI/CD
+name: Deploy to Cloud Run
 
 on:
   push:
-    branches:
-      - '**'    # すべてのブランチでトリガー
-  pull_request:
-    branches:
-      - '**'
+    branches: [main]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build & Test
-        run: |
-          echo "ここでビルドやテスト"
-
   deploy:
-    if: github.ref == 'refs/heads/main'  # 本番デプロイは main ブランチだけ
-    needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read    # checkout 用
+      id-token: write   # OIDC 用
+
     steps:
-      - uses: actions/checkout@v3
+      # 1. Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Authenticate to GCP using Workload Identity Federation
       - name: Authenticate to GCP
         uses: google-github-actions/auth@v1
         with:
           workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
           service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      # 3. Deploy to Cloud Run using Buildpacks
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy cloud-run-github-actions-sample \
