@@ -1,5 +1,5 @@
 nix-shell -p pinact --run "pinact run"
-git add $(git diff --name-only)
+git add $(git diff --name-only -- 'github/workflows/*')
 pnpm --filter image-classification-api run test run
 pnpm -r exec tsc --noEmit 
 pnpm exec lint-staged
