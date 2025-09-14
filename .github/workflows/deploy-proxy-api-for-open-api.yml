@@ -28,7 +28,7 @@ jobs:
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy cloud-run-github-actions-sample \
-            --source ./proxy-api-for-open-ai \
+            --source ./apps/proxy-api-for-open-ai \
             --region asia-northeast1 \
             --allow-unauthenticated \
             --set-env-vars=API_KEY=${{ secrets.API_KEY }}

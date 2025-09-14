@@ -221,8 +221,21 @@ CREATE TABLE ai_analysis_log (
 
 ## 9. 開発環境
 
+### プロジェクト構造
+本プロジェクトはmonorepo構造を採用しており、複数のアプリケーションを統合管理しています。
+
+```
+invox-tech-assignment/
+├── apps/
+│   ├── image-classification-api/    # 画像分類API（Cloudflare Workers）
+│   └── proxy-api-for-open-ai/       # OpenAI APIプロキシ（Cloud Run）
+├── docs/                            # ドキュメント
+├── pnpm-workspace.yaml             # pnpmワークスペース設定
+└── package.json                     # ルートパッケージ設定
+```
+
 ### 開発ツール
-- **パッケージマネージャー**: pnpm
+- **パッケージマネージャー**: pnpm（ワークスペース対応）
 - **コミットメッセージ規約**: Conventional Commits
 - **コミットリント**: commitlint + husky
 - **プリコミットフック**: husky
@@ -231,11 +244,18 @@ CREATE TABLE ai_analysis_log (
 
 ### セットアップ
 ```bash
-# 依存関係のインストール
+# 依存関係のインストール（全ワークスペース）
 pnpm install
 
 # huskyの初期化
 pnpm prepare
+
+# 特定のアプリケーションでの作業
+cd apps/image-classification-api
+pnpm dev
+
+cd apps/proxy-api-for-open-ai
+pnpm dev
 ```
 
 ### CI/CD
