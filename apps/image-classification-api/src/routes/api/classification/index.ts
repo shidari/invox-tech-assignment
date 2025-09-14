@@ -90,7 +90,7 @@ app.post(
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${c.env.PROXY_API_KEY}`,
+            "x-api-key": c.env.PROXY_API_KEY,
           },
           body: JSON.stringify({ text: label }),
         }),
