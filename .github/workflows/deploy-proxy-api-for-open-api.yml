@@ -31,5 +31,3 @@ jobs:
             --source ./proxy-api-for-open-ai \
             --region asia-northeast1 \
             --allow-unauthenticated \
-            --service-account ${{ secrets.GCP_SERVICE_ACCOUNT }} \
-            --build-service-account projects/invox-tech-assignment/serviceAccounts/${{ secrets.GCP_SERVICE_ACCOUNT }}
