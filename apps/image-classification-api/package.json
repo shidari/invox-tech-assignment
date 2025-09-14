@@ -11,8 +11,14 @@
 		"test": "pnpm exec vitest"
 	},
 	"dependencies": {
+		"@hono/standard-validator": "^0.1.5",
+		"@hono/valibot-validator": "^0.5.3",
 		"drizzle-orm": "^0.44.5",
-		"hono": "^4.9.6"
+		"hono": "^4.9.6",
+		"hono-openapi": "^1.0.7",
+		"mathjs": "^14.7.0",
+		"neverthrow": "^8.2.0",
+		"valibot": "^1.1.0"
 	},
 	"devDependencies": {
 		"@types/node": "^24.4.0",
