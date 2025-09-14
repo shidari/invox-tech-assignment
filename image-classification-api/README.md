@@ -4,6 +4,10 @@ npm run dev
 ```
 
 ```txt
+npm run test
+```
+
+```txt
 npm run deploy
 ```
 

@@ -1,9 +1,19 @@
-import { Hono } from "hono";
+/**
+ * Welcome to Cloudflare Workers! This is your first worker.
+ *
+ * - Run `npm run dev` in your terminal to start a development server
+ * - Open a browser tab at http://localhost:8787/ to see your worker in action
+ * - Run `npm run deploy` to publish your worker
+ *
+ * Bind resources to your worker in `wrangler.jsonc`. After adding bindings, a type definition for the
+ * `Env` object can be regenerated with `npm run cf-typegen`.
+ *
+ * Learn more at https://developers.cloudflare.com/workers/
+ */
 
-const app = new Hono();
+import type { Env } from "hono";
+import { app } from "./app";
 
-app.get("/", (c) => {
-	return c.text("Hello Hono!");
-});
-
-export default app;
+export default {
+	fetch: app.fetch,
+} satisfies ExportedHandler<Env>;
