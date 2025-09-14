@@ -31,3 +31,4 @@ jobs:
             --source ./proxy-api-for-open-ai \
             --region asia-northeast1 \
             --allow-unauthenticated \
+            --set-env-vars=API_KEY=${{ secrets.API_KEY }}
