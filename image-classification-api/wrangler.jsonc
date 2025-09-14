@@ -2,7 +2,14 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "image-classification-api",
 	"main": "src/index.ts",
-	"compatibility_date": "2025-09-11"
+	"compatibility_date": "2025-09-11",
+	"d1_databases": [
+		{
+			"binding": "invox_tech_assignment_db",
+			"database_name": "invox-tech-assignment-db",
+			"database_id": "940538d2-dc97-4af4-832c-48ceb1a2f7bd"
+		}
+	]
 	// "compatibility_flags": [
 	//   "nodejs_compat"
 	// ],
