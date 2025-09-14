@@ -290,5 +290,5 @@ footer
 - `chore`: その他の変更
 
 ### Git Hooks
-- **pre-commit**: テスト実行
+- **pre-commit**: テスト実行、TypeScript型チェック、lint-staged実行
 - **commit-msg**: コミットメッセージの形式チェック
