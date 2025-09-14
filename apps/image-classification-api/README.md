@@ -13,6 +13,12 @@ Google Vision APIを使用した画像分類APIです。画像URLを受け取り
 
 ## API仕様
 
+### API ドキュメント
+
+開発サーバー起動後、以下のURLでSwagger UIによるAPIドキュメントを確認できます：
+- Swagger UI: `http://localhost:8787/`
+- OpenAPI JSON: `http://localhost:8787/openapi`
+
 ### POST /api/classification
 
 画像を分類します。
