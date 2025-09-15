@@ -44,3 +44,10 @@ describe("/doc", () => {
     expect(res.status).toBe(200);
   });
 });
+
+describe("/api", () => {
+  it("GET /api/*で認証をつけないと401が返ってくる", async () => {
+    const res = await app.request("/api/hoge");
+    expect(res.status).toBe(401);
+  });
+});
