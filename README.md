@@ -130,7 +130,7 @@ CREATE TABLE label_management (
 ### エンドポイント
 
 image-classification-apiのエンドポイントは
-https://image-classification-api.hello-work-searher-api.workers.dev/ 
+https://image-classification-api.sho-lab.workers.dev
 です。
 
 **POST** `/classification`

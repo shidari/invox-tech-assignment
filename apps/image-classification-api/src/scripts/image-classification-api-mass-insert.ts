@@ -1,6 +1,6 @@
 import { $ } from "zx";
 
-const endpoint = "http://localhost:8787";
+const endpoint = "https://image-classification-api.sho-lab.workers.dev";
 
 const ary: unknown[] = [];
 const limit = 100;
