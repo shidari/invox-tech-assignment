@@ -16,8 +16,15 @@ export OPENAI_API_KEY=your_openai_api_key
 ```
 
 ### サーバーの起動
+
+#### 開発環境
 ```bash
 npm run dev
+```
+
+#### 本番環境
+```bash
+npm start
 ```
 
 ### APIアクセス

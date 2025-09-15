@@ -90,13 +90,13 @@ importers:
       hono:
         specifier: ^4.9.6
         version: 4.9.7
+      tsx:
+        specifier: ^4.20.5
+        version: 4.20.5
     devDependencies:
       '@types/node':
         specifier: ^20.11.17
         version: 20.19.14
-      tsx:
-        specifier: ^4.7.1
-        version: 4.20.5
       typescript:
         specifier: ^5.8.3
         version: 5.9.2

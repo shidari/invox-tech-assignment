@@ -1,8 +1,11 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
+import { logger } from "hono/logger";
 
 const app = new Hono();
 const API_KEY = process.env.API_KEY || "your_default_api_key";
+
+app.use(logger());
 
 // 認証ミドルウェア
 app.use("*", async (c, next) => {
