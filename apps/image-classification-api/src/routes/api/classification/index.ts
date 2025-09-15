@@ -17,13 +17,13 @@ import {
 } from "../../../error";
 import * as v from "valibot";
 import {
-  buildDrizzleD1DBClient,
   buildGoogleVisionApiClient,
   parseGCPServiceAccountRawString,
   validateGCPServiceAccount,
 } from "./_helpers";
-import { isoTimestampSchema } from "./_helpers/drizzleD1DBClient/schema";
+import { isoTimestampSchema } from "../../_shared/_helpers/drizzleD1DBClient/schema";
 import { calculateCosineSimilarity } from "../../../util";
+import { buildDrizzleD1DBClient } from "../../_shared/_helpers/drizzleD1DBClient";
 
 const app = new Hono<{ Bindings: CloudflareBindings }>();
 

@@ -30,7 +30,44 @@ Google Vision APIを使用した画像分類APIです。画像URLを受け取り
 }
 ```
 
-**レスポンス（成功時）:**
+### GET /api/classes
+
+すべてのクラスとラベルを取得します。
+
+**レスポンス例（成功時）:**
+```json
+[
+  {
+    "classId": 1,
+    "label": "Dog"
+  },
+  {
+    "classId": 2,
+    "label": "Cat"
+  }
+]
+```
+
+### GET /api/classes/:classId
+
+指定されたクラスIDのラベルを取得します。
+
+**パラメータ:**
+- `classId`: クラスID（数値）
+
+**レスポンス例（成功時）:**
+```json
+{
+  "classId": 1,
+  "label": "Dog"
+}
+```
+
+### POST /api/classification
+
+画像を分類します。
+
+**レスポンス例（成功時）:**
 ```json
 {
   "success": true,
