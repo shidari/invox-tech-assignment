@@ -29,6 +29,18 @@
   - Node.js標準ライブラリ（fs）がWorkers環境で利用不可
   - OAuth2/JWT認証をREST APIで手動実装する必要
 
+### 4. Cloud Run デプロイ時の環境変数設定 ⭐️
+**課題**: Cloud Runでの環境変数設定と反映タイミングの問題
+- **具体的な問題**: 
+  - デプロイ時の環境変数設定とGCPコンソールでの後追い設定が混在
+  - 環境変数の反映タイミングが不明確で検証が困難
+  - どの設定が実際に適用されているか把握しづらい
+- **関連技術**: Google Cloud Run, 環境変数, デプロイメント
+- **苦労した理由**: 
+  - デプロイ時とコンソール設定の優先順位が不明
+  - 環境変数の変更がいつ反映されるか予測困難
+  - 設定の検証方法が限られており、デバッグに時間がかかる
+
 ---
 
 ## 📋 課題解決のチェックリスト
@@ -54,6 +66,13 @@
 - [ ] Google API REST エンドポイントの直接呼び出し
 - [ ] 認証トークンの取得・更新ロジック
 - [ ] エラーハンドリング・リトライ機能
+
+### Cloud Run 環境変数設定
+- [ ] デプロイ時の環境変数設定方法の統一
+- [ ] GCPコンソールでの環境変数設定との整合性確認
+- [ ] 設定変更後の検証方法の確立
+- [ ] デプロイ設定ファイル（YAML等）での環境変数管理
+- [ ] 環境変数の優先順位の理解と文書化
 
 ---
 
@@ -99,6 +118,21 @@
    - メモリ制限（128MB）
    - 同期処理の制限
 
+### Cloud Run 環境変数設定エラーが出た場合
+1. **設定方法の混在確認**
+   - デプロイ時の環境変数設定を確認
+   - GCPコンソールでの後追い設定を確認
+   - どちらの設定が優先されているか検証
+
+2. **検証・デバッグ方法**
+   - Cloud Runログでの環境変数確認
+   - アプリケーション内での環境変数出力（機密情報除く）
+   - リビジョン履歴での設定変更確認
+
+3. **設定の統一化**
+   - デプロイ設定ファイルでの一元管理
+   - コンソール設定との整合性チェック
+
 ---
 
 ## 📚 参考になったリソース
@@ -113,6 +147,12 @@
 - [Google API REST認証](https://developers.google.com/identity/protocols/oauth2/service-account)
 - [JWT実装例](https://developers.cloudflare.com/workers/examples/)
 - [Workers環境での制約](https://developers.cloudflare.com/workers/platform/limits/)
+
+### Cloud Run 環境変数・デプロイメント
+- [Cloud Run 環境変数設定](https://cloud.google.com/run/docs/configuring/environment-variables)
+- [Cloud Run デプロイメント](https://cloud.google.com/run/docs/deploying)
+- [Cloud Run リビジョン管理](https://cloud.google.com/run/docs/managing/revisions)
+- [gcloud run deploy コマンド](https://cloud.google.com/sdk/gcloud/reference/run/deploy)
 
 ### よくある問題・解決策
 - GCP IAM権限のベストプラクティス
@@ -152,6 +192,12 @@
 - REST APIでの手動実装が必要で、認証周りが特に複雑
 - JWT署名生成をWeb Crypto APIで実装する必要がある
 
+### Cloud Run関連
+- 環境変数の設定方法が複数あり（コンソール、gcloud CLI、YAML）、混乱しやすい
+- デプロイ時とコンソールでの設定が混在すると、どちらが優先されるか不明確
+- 設定の検証方法が限られており、実際の動作確認まで問題に気づけない場合がある
+- デプロイ後の環境変数確認が困難で、デバッグに時間がかかる
+
 ---
 
-*最終更新: 2025/09/14*
+*最終更新: 2025/09/15*
