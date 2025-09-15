@@ -5,7 +5,7 @@ import {
   proxyAPISuccessResponseSchema,
   requestBodySchema,
   successResponseSchema,
-} from "./schema";
+} from "./_schema";
 import { vValidator } from "@hono/valibot-validator";
 import { drizzle } from "drizzle-orm/d1";
 import { err, okAsync, ResultAsync, safeTry } from "neverthrow";
@@ -21,8 +21,8 @@ import {
   buildGoogleVisionApiClient,
   parseGCPServiceAccountRawString,
   validateGCPServiceAccount,
-} from "./helpers";
-import { isoTimestampSchema } from "./helpers/drizzleD1DBClient/schema";
+} from "./_helpers";
+import { isoTimestampSchema } from "./_helpers/drizzleD1DBClient/schema";
 import { calculateCosineSimilarity } from "../../../util";
 
 const app = new Hono<{ Bindings: CloudflareBindings }>();
