@@ -23,7 +23,6 @@ import {
   validateGCPServiceAccount,
 } from "./helpers";
 import { isoTimestampSchema } from "./helpers/drizzleD1DBClient/schema";
-import { HTTPException } from "hono/http-exception";
 import { calculateCosineSimilarity } from "../../../util";
 
 const app = new Hono<{ Bindings: CloudflareBindings }>();
@@ -202,8 +201,8 @@ app.post(
         if (!result.isErr()) {
           return c.json({
             success: false,
-            message: "internal server error.",
-            status: 500,
+            message: `Error:${error.code}`,
+            estimated_data: {},
           });
         }
         switch (error._tag) {
@@ -222,13 +221,13 @@ app.post(
             return c.json({
               success: false,
               message: `Error:${error.code}`,
-              status: 500,
+              estimated_data: {},
             });
           default:
             return c.json({
               success: false,
               message: `Error:${error.code}`,
-              status: 500,
+              estimated_data: {},
             });
         }
       },
