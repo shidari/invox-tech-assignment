@@ -47,7 +47,16 @@ app.post("/embeddings", async (c) => {
     }
     return c.json({ embeddings });
   } catch (e) {
-    console.error(e);
+    if (e instanceof Error) {
+      console.log("[ERROR]");
+      console.log("  name   :", e.name);
+      console.log("  message:", e.message);
+      if (e.stack) {
+        console.log("  stack  :", e.stack);
+      }
+    } else {
+      console.log("[ERROR]", e);
+    }
     return c.json({ message: "Internal server error." }, 500);
   }
 });
