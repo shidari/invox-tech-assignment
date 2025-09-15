@@ -20,7 +20,7 @@ app.get(
   openAPIRouteHandler(app, {
     documentation: {
       info: {
-        title: "Hono API",
+        title: "Image Classification API",
         version: "1.1.0",
         description: "Image Classification API",
       },

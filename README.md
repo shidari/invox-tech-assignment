@@ -133,6 +133,24 @@ image-classification-apiのエンドポイントは
 https://image-classification-api.sho-lab.workers.dev
 です。
 
+### 認証
+
+#### APIエンドポイント認証
+APIエンドポイント（`/api/*`）へのアクセスにはBearer認証が必要です。
+
+```
+Authorization: Bearer <API_TOKEN>
+```
+
+#### Swagger UI認証
+Swagger UI（`/doc`）へのアクセスにはBasic認証が必要です。
+
+```
+Authorization: Basic <base64(USERNAME:PASSWORD)>
+```
+
+**注意**: `API_TOKEN`、`USERNAME`、`PASSWORD`は環境変数として設定する必要があります。
+
 **POST** `/classification`
 
 ### リクエスト
