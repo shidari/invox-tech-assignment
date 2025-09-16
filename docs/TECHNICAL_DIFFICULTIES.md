@@ -29,7 +29,19 @@
   - Node.js標準ライブラリ（fs）がWorkers環境で利用不可
   - OAuth2/JWT認証をREST APIで手動実装する必要
 
-### 4. Cloud Run デプロイ時の環境変数設定 ⭐️
+### 4. GitHub Actions での Google Auth 設定 ⭐️
+**課題**: GitHub Actions で Google Cloud への認証設定
+- **具体的な問題**: 
+  - google-github-actions/auth アクションの設定方法
+  - Workload Identity Federation との連携
+  - 認証情報の適切な管理方法
+- **関連技術**: GitHub Actions, google-github-actions/auth, Workload Identity Federation
+- **苦労した理由**: 
+  - GCPの権限周りの仕組みを読み込む必要があった
+  - google-github-actions/auth のドキュメントを詳細に読む必要があった
+  - 認証エラー時のデバッグが困難
+
+### 5. Cloud Run デプロイ時の環境変数設定 ⭐️
 **課題**: Cloud Runでの環境変数設定と反映タイミングの問題
 - **具体的な問題**: 
   - デプロイ時の環境変数設定とGCPコンソールでの後追い設定が混在
@@ -142,23 +154,15 @@
 - [GitHub Actions GCP認証](https://github.com/google-github-actions/auth)
 - [Cloud Vision API](https://cloud.google.com/vision/docs)
 - [Cloudflare Workers Runtime APIs](https://developers.cloudflare.com/workers/runtime-apis/)
-
-### Cloudflare Workers + Google API
 - [Google API REST認証](https://developers.google.com/identity/protocols/oauth2/service-account)
-- [JWT実装例](https://developers.cloudflare.com/workers/examples/)
-- [Workers環境での制約](https://developers.cloudflare.com/workers/platform/limits/)
-
-### Cloud Run 環境変数・デプロイメント
 - [Cloud Run 環境変数設定](https://cloud.google.com/run/docs/configuring/environment-variables)
 - [Cloud Run デプロイメント](https://cloud.google.com/run/docs/deploying)
-- [Cloud Run リビジョン管理](https://cloud.google.com/run/docs/managing/revisions)
-- [gcloud run deploy コマンド](https://cloud.google.com/sdk/gcloud/reference/run/deploy)
 
-### よくある問題・解決策
-- GCP IAM権限のベストプラクティス
-- GitHub Actions デバッグ方法
-- Service Account キー管理
-- Workers環境でのGoogle API実装パターン
+### GitHub Actions関連
+- [google-github-actions/auth のドキュメント](https://github.com/google-github-actions/auth) - GCPの権限周りの仕組みと合わせて読む必要があった
+
+### 参考情報
+主に公式ドキュメントを中心に情報収集を行い、各技術の仕様や設定方法を理解することで課題を解決した。
 
 ---
 
@@ -200,4 +204,4 @@
 
 ---
 
-*最終更新: 2025/09/15*
+*最終更新: 2025/09/16*
