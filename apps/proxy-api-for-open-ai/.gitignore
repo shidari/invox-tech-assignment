@@ -15,6 +15,9 @@ node_modules/
 .env
 .env.production
 
+# Allow .env.sample files
+!.env.sample
+
 # logs
 logs/
 *.log

@@ -120,11 +120,13 @@ npm run mass-insert
 
 このスクリプトは以下の処理を行います：
 - Picsum Photosからランダムな画像URLを100件取得
-- 各画像に対してローカルAPIエンドポイント（`http://localhost:8787/api/classification`）を呼び出し
+- 各画像に対してAPIエンドポイント（`https://image-classification-api.sho-lab.workers.dev/api/classification`）を呼び出し
+- Bearer認証を使用してAPIアクセス
 - 0.5秒間隔で順次処理を実行してサーバー負荷を軽減
 - 処理結果をコンソールに出力
 
-**注意**: 実行前にローカル開発サーバーが起動していることを確認してください（`npm run dev`）。
+**注意**: 
+- `.env`ファイルに`API_KEY`環境変数を設定してください
 
 ## デプロイ
 

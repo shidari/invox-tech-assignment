@@ -1,5 +1,9 @@
 import { $ } from "zx";
+import "dotenv/config";
 
+if (!process.env.API_KEY) {
+  throw new Error("API_KEY is not set");
+}
 const endpoint = "https://image-classification-api.sho-lab.workers.dev";
 
 const ary: unknown[] = [];
@@ -11,6 +15,7 @@ for (let i = 0; i < limit; i++) {
   const res = await fetch(`${endpoint}/api/classification`, {
     method: "POST",
     headers: {
+      Authorization: `Bearer ${process.env.API_KEY}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
