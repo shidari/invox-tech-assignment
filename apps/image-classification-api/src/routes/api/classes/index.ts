@@ -7,7 +7,7 @@ import {
   classIdSuccessResponseSchema,
 } from "./_schema";
 import { drizzle } from "drizzle-orm/d1";
-import { buildDrizzleD1DBClient } from "../_shared/_helpers/drizzleD1DBClient";
+import { buildDrizzleD1DBClient } from "../../_shared/_helpers/drizzleD1DBClient";
 import { okAsync, safeTry } from "neverthrow";
 
 const app = new Hono<{ Bindings: CloudflareBindings }>();
