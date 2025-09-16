@@ -75,6 +75,15 @@ graph TD
 - **embedding生成**: OpenAI API（Cloud Run経由）
 - **API仕様管理**: Cloudflare Workers側でOpenAPI仕様・スキーマ管理
 
+### アーキテクチャ制約・技術課題
+- **Cloudflare Workers Free Plan制限**: CPU時間制限（10ms）によりスケーラビリティに制約
+  - embeddings処理が100件を超えるとCPU制限を超過する問題をFloat32Array使用で対応済み
+  - 有料プランでは50msまで拡張可能だが、数千単位のembeddingsでは依然として制約あり
+- **アーキテクチャ選択の制約**: 技術課題としてのプラットフォーム制限
+  - 大規模なembeddings処理には設計・やり方の根本的な変更が必要
+  - 技術課題として極力Free Planでできるやり方を選択
+  - データベーススキーマ最適化（blob形式、stringified JSON等）により改善の余地あり
+
 ### 柔軟性・運用方針
 - **画像ソース**: HTTPS経由で外部ストレージ・一般サーバーから直接画像パスを取得
 - **類似度閾値**: 運用に応じて調整可能な柔軟設計
