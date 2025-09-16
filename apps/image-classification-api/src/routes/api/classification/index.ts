@@ -119,13 +119,14 @@ app.post(
         );
       }
       const { embeddings } = validatedEmbeddingResult.output;
+      const queryEmbeddings = new Float32Array(embeddings);
       const labelAndEmbeddings =
         yield* await client.queries.selectAllLabelsAndEmbeddingsList();
 
       const SIMILARITY_THRESHOLD = 0.8;
       const similarEmbeddings = labelAndEmbeddings.filter(
         (item) =>
-          calculateCosineSimilarity(item.embeddings, embeddings) >=
+          calculateCosineSimilarity(item.embeddings, queryEmbeddings) >=
           SIMILARITY_THRESHOLD,
       );
 

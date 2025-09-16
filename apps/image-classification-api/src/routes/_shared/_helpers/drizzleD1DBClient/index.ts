@@ -22,12 +22,14 @@ export const buildDrizzleD1DBClient = (
           (e) => createClassAndLabelAndEmbeddingsTableError(e),
         );
         const transformedData = storedData.map(
-          ({ label, embeddings: rawEmbeddings }) => ({
-            embeddings: rawEmbeddings
-              .split(",")
-              .map((rawEmbed) => Number(rawEmbed)),
-            label,
-          }),
+          ({ label, embeddings: rawEmbeddings }) => {
+            const parts = rawEmbeddings.split(",");
+            const arr = new Float32Array(parts.length);
+            for (let i = 0; i < parts.length; i++) {
+              arr[i] = +parts[i]!; // あまりにdirtyなので、!で無理やり型を通す。
+            }
+            return { embeddings: arr, label };
+          },
         );
         return okAsync(transformedData);
       });
