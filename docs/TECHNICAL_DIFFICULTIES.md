@@ -73,6 +73,25 @@
   - データベーススキーマ変更（blob形式、stringified JSON等）の選択肢もあったが時間制約上断念
   - データの持ち方を工夫すればもう少しスケールする可能性あり
 
+### 7. Cloudflare Durable Objects設定・実装 ⭐️
+**課題**: Durable Objectsの概念理解と実装の困難さ
+- **具体的な問題**: 
+  - Durable Objectsの概念とサンプルコードの理解に時間がかかる
+  - SQLiteのINSERT文で配列ではなく多引数で値を渡す必要がある
+  - 型エラーで検知されないため、実行時エラーでハマる
+- **関連技術**: Cloudflare Durable Objects, SQLite, cloudflare:test
+- **苦労した理由**: 
+  - Durable Objectsの概念が独特で、サンプルコードの使い方の理解に時間がかかった
+  - SQLiteのクエリ実行時の引数の渡し方が直感的でない
+  - TypeScriptの型チェックでSQLクエリの引数エラーが検知されない
+- **解決方法**: 
+  - 公式ドキュメントとサンプルコードを詳細に読み込み
+  - SQLiteクエリの引数渡しを配列から多引数形式に修正
+  - direct-access.test.tsでのDurable Objects単体テスト実装
+- **備考**: 
+  - 概念の理解に時間をかけることが重要
+  - SQLiteクエリの引数渡しは要注意ポイント
+
 ---
 
 ## 📋 課題解決のチェックリスト
