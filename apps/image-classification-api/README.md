@@ -106,9 +106,16 @@ npm run dev
 
 ## テスト
 
+Cloudflare Workers環境でのテストを実行します：
+
 ```bash
 npm run test
 ```
+
+テスト環境は以下の技術を使用しています：
+- **Vitest**: テストフレームワーク
+- **@cloudflare/vitest-pool-workers**: Cloudflare Workers環境でのテスト実行
+- Wrangler設定ファイル（`wrangler.jsonc`）を使用してWorkers環境を模擬
 
 ## 大量データ挿入
 
