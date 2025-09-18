@@ -27,6 +27,31 @@ import { buildDrizzleD1DBClient } from "../../_shared/_helpers/drizzleD1DBClient
 
 const app = new Hono<{ Bindings: CloudflareBindings }>();
 
+app.use(async (c, next) => {
+  try {
+    const ipHeaderValueOrUnknown =
+      c.req.header("cf-connecting-ip") || "unknown";
+    const id = c.env.RateLimiterDurableObject.idFromName(
+      ipHeaderValueOrUnknown,
+    );
+    const stub = c.env.RateLimiterDurableObject.get(id);
+    stub.incrementRateLimit(ipHeaderValueOrUnknown);
+    if (await stub.isRateLimited(ipHeaderValueOrUnknown)) {
+      return c.json(
+        { success: false, message: "Error:E16", estimated_data: {} },
+        429,
+      );
+    }
+  } catch (error) {
+    console.error("Error in rate limiter middleware:", error);
+    return c.json(
+      { success: false, message: "Error:E17", estimated_data: {} },
+      500,
+    );
+  }
+
+  await next();
+});
 app.post(
   "/",
   describeRoute({

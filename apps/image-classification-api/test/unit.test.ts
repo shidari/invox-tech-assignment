@@ -11,6 +11,7 @@ const MOCKED_ENV = {
   ...env,
   USERNAME: "user",
   PASSWORD: "pass",
+  API_TOKEN: "token",
 };
 describe("/", () => {
   // open api jsonでinternal server errorが出てないか確かめる用
@@ -66,5 +67,23 @@ describe("/api", () => {
     const response = await worker.fetch(request, MOCKED_ENV, ctx);
     await waitOnExecutionContext(ctx);
     expect(response.status).toBe(401);
+  });
+});
+
+describe("/api/classification", () => {
+  it("GET /api/*100回未満/api/classificationのリクエストがあった場合、200を返す", async () => {
+    const request = new Request("http://localhost:8787/api/classification", {
+      headers: {
+        Authorization: `Bearer ${MOCKED_ENV.API_TOKEN}`,
+      },
+    });
+    const ctx = createExecutionContext();
+    for (let i = 0; i <= 100; i++) {
+      await worker.fetch(request, MOCKED_ENV, ctx);
+      await waitOnExecutionContext(ctx);
+    }
+    const response = await worker.fetch(request, MOCKED_ENV, ctx);
+    await waitOnExecutionContext(ctx);
+    expect(response.status).toBe(429);
   });
 });

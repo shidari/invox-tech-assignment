@@ -1,45 +1,59 @@
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "image-classification-api",
-	"main": "src/index.ts",
-	"compatibility_date": "2025-09-11",
-	"d1_databases": [
-		{
-			"binding": "invox_tech_assignment_db",
-			"database_name": "invox-tech-assignment-db",
-			"database_id": "940538d2-dc97-4af4-832c-48ceb1a2f7bd"
-		}
-	]
-	// "compatibility_flags": [
-	//   "nodejs_compat"
-	// ],
-	// "vars": {
-	//   "MY_VAR": "my-variable"
-	// },
-	// "kv_namespaces": [
-	//   {
-	//     "binding": "MY_KV_NAMESPACE",
-	//     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-	//   }
-	// ],
-	// "r2_buckets": [
-	//   {
-	//     "binding": "MY_BUCKET",
-	//     "bucket_name": "my-bucket"
-	//   }
-	// ],
-	// "d1_databases": [
-	//   {
-	//     "binding": "MY_DB",
-	//     "database_name": "my-database",
-	//     "database_id": ""
-	//   }
-	// ],
-	// "ai": {
-	//   "binding": "AI"
-	// },
-	// "observability": {
-	//   "enabled": true,
-	//   "head_sampling_rate": 1
-	// }
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "image-classification-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-09-11",
+  "d1_databases": [
+    {
+      "binding": "invox_tech_assignment_db",
+      "database_name": "invox-tech-assignment-db",
+      "database_id": "940538d2-dc97-4af4-832c-48ceb1a2f7bd"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "RateLimiterDurableObject",
+        "class_name": "RateLimiterDurableObject"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["RateLimiterDurableObject"]
+    }
+  ],
+  // "compatibility_flags": [
+  //   "nodejs_compat"
+  // ],
+  // "vars": {
+  //   "MY_VAR": "my-variable"
+  // },
+  // "kv_namespaces": [
+  //   {
+  //     "binding": "MY_KV_NAMESPACE",
+  //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  //   }
+  // ],
+  // "r2_buckets": [
+  //   {
+  //     "binding": "MY_BUCKET",
+  //     "bucket_name": "my-bucket"
+  //   }
+  // ],
+  // "d1_databases": [
+  //   {
+  //     "binding": "MY_DB",
+  //     "database_name": "my-database",
+  //     "database_id": ""
+  //   }
+  // ],
+  // "ai": {
+  //   "binding": "AI"
+  // },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
 }
