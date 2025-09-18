@@ -207,7 +207,7 @@ app.post(
         message: "success",
         estimated_data: {
           class: classId,
-          confidence: label,
+          confidence,
         },
       });
     });
