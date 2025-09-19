@@ -71,7 +71,7 @@ describe("/api", () => {
 });
 
 describe("/api/classification", () => {
-  it("GET /api/*100回未満/api/classificationのリクエストがあった場合、200を返す", async () => {
+  it("GET 100回以上のリクエストがあった場合、429を返す", async () => {
     const request = new Request("http://localhost:8787/api/classification", {
       headers: {
         Authorization: `Bearer ${MOCKED_ENV.API_TOKEN}`,
